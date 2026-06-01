@@ -4,48 +4,44 @@ import numpy as np
 import plotly.express as px
 import joblib
 
-# ---------------------------
-
+# -----------------------
 # PAGE CONFIG
-
-# ---------------------------
+# -----------------------
 
 st.set_page_config(
-page_title="AI Demand Forecast Dashboard",
-page_icon="📈",
-layout="wide"
+    page_title="AI Demand Forecast Dashboard",
+    page_icon="📈",
+    layout="wide"
 )
 
-# ---------------------------
-
+# -----------------------
 # LOAD DATA
-
-# ---------------------------
+# -----------------------
 
 @st.cache_data
 def load_data():
-return pd.read_csv("cleaned_data.csv")
+    df = pd.read_csv("cleaned_data.csv")
+    return df
 
 @st.cache_resource
 def load_model():
-return joblib.load("demand_forecast_model.pkl")
+    model = joblib.load("demand_forecast_model.pkl")
+    return model
 
 df = load_data()
 model = load_model()
 
-# ---------------------------
-
+# -----------------------
 # HEADER
-
-# ---------------------------
+# -----------------------
 
 st.title("📈 AI-Powered Retail Demand Forecasting Dashboard")
-st.markdown(
-"""
-Analyze demand trends, demand distribution, inventory insights,
-and predict future demand using Machine Learning.
-"""
-)
+
+st.markdown("""
+Analyze demand trends, demand distribution,
+inventory insights, and predict future demand
+using Machine Learning.
+""")
 
 st.divider()
 
